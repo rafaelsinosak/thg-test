@@ -20,18 +20,11 @@ COPY . /code/
 # Copy the wait script into the container
 COPY wait_for_postgres.sh /code/wait_for_postgres.sh
 
+# Copy the .env file into the container
+COPY .env /code/.env
+
 # Ensure the wait script has execute permissions
 RUN chmod +x /code/wait_for_postgres.sh
-
-# Define environment variables
-ENV SECRET_KEY=your_secret_key
-ENV DEBUG=True
-ENV ALLOWED_HOSTS=127.0.0.1,.localhost
-ENV POSTGRES_DB=mydatabase
-ENV POSTGRES_USER=user
-ENV POSTGRES_PASSWORD=password
-ENV DATAUSA_API_BASE_URL=https://datausa.io/api/data
-ENV ZIRCON_API_BASE_URL=https://zircon.datausa.io/api/data
 
 # Create staticfiles directory
 RUN mkdir /code/staticfiles

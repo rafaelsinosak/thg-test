@@ -1,11 +1,8 @@
-import pytest
 from django.test import TestCase
 from graphene.test import Client
 from api.schema import schema
 
-@pytest.mark.django_db
 class GraphQLTestCase(TestCase):
-
     def test_population_data(self):
         client = Client(schema)
         executed = client.execute('''
@@ -25,9 +22,15 @@ class GraphQLTestCase(TestCase):
         executed = client.execute('''
             query {
                 vehicleOwnershipData(year: 2021) {
+                    idVehiclesAvailable
                     vehiclesAvailable
-                    households
+                    idYear
                     year
+                    commuteMeansByGender
+                    geography
+                    idGeography
+                    slugGeography
+                    households
                 }
             }
         ''')

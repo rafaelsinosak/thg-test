@@ -25,7 +25,7 @@ import { VehicleOwnershipChartComponent } from './vehicle-ownership-chart/vehicl
       useFactory: (httpLink: HttpLink) => {
         return {
           cache: new InMemoryCache(),
-          link: httpLink.create({ uri: 'http://localhost:8000/graphql' }),
+          link: httpLink.create({ uri: 'http://localhost:8000/graphql/' }),
         };
       },
       deps: [HttpLink],

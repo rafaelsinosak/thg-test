@@ -2,25 +2,15 @@ import graphene
 from graphene_django import DjangoObjectType
 import requests
 from decouple import config
+from .models import PopulationData, VehicleOwnershipData
 
-class PopulationType(graphene.ObjectType):
-    id_state = graphene.String()
-    state = graphene.String()
-    id_year = graphene.Int()
-    year = graphene.String()
-    population = graphene.Int()
-    slug_state = graphene.String()
+class PopulationType(DjangoObjectType):
+    class Meta:
+        model = PopulationData
 
-class VehicleOwnershipType(graphene.ObjectType):
-    id_vehicles_available = graphene.Int()
-    vehicles_available = graphene.String()
-    id_year = graphene.Int()
-    year = graphene.String()
-    commute_means_by_gender = graphene.Int()
-    geography = graphene.String()
-    id_geography = graphene.String()
-    slug_geography = graphene.String()
-    households = graphene.Int()
+class VehicleOwnershipType(DjangoObjectType):
+    class Meta:
+        model = VehicleOwnershipData
 
 class Query(graphene.ObjectType):
     population_data = graphene.List(PopulationType, states=graphene.List(graphene.String), start_year=graphene.Int(), end_year=graphene.Int())
@@ -39,7 +29,7 @@ class Query(graphene.ObjectType):
             end_year = max(int(item.get('Year')) for item in data)
 
         filtered_data = [
-            PopulationType(
+            PopulationData(
                 id_state=item.get('ID State'),
                 state=item.get('State'),
                 id_year=item.get('ID Year'),
@@ -50,6 +40,10 @@ class Query(graphene.ObjectType):
             for item in data
             if item.get('State') in states and start_year <= int(item.get('Year')) <= end_year
         ]
+
+        # Saving Data into the database
+        PopulationData.objects.bulk_create(filtered_data, ignore_conflicts=True)
+
         return filtered_data
 
     def resolve_vehicle_ownership_data(self, info, year=None):
@@ -62,7 +56,7 @@ class Query(graphene.ObjectType):
             year = max(years)
 
         filtered_data = [
-            VehicleOwnershipType(
+            VehicleOwnershipData(
                 id_vehicles_available=item.get('ID Vehicles Available'),
                 vehicles_available=item.get('Vehicles Available'),
                 id_year=item.get('ID Year'),
@@ -76,6 +70,10 @@ class Query(graphene.ObjectType):
             for item in data
             if int(item.get('Year')) == year
         ]
+
+        # Saving Data into the database
+        VehicleOwnershipData.objects.bulk_create(filtered_data, ignore_conflicts=True)
+
         return filtered_data
 
 schema = graphene.Schema(query=Query)

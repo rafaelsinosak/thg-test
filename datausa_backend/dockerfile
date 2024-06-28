@@ -1,7 +1,46 @@
-FROM python:3.9
+# Use the official Python image from the Docker Hub
+FROM python:3.12
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-WORKDIR /app
-COPY requirements.txt /app/
+
+# Set the working directory
+WORKDIR /code
+
+# Copy the requirements file into the container
+COPY requirements.txt /code/
+
+# Install the dependencies
 RUN pip install -r requirements.txt
-COPY . /app/
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+# Copy the rest of the code into the container
+COPY . /code/
+
+# Copy the wait script into the container
+COPY wait_for_postgres.sh /code/wait_for_postgres.sh
+
+# Ensure the wait script has execute permissions
+RUN chmod +x /code/wait_for_postgres.sh
+
+# Define environment variables
+ENV SECRET_KEY=your_secret_key
+ENV DEBUG=True
+ENV ALLOWED_HOSTS=127.0.0.1,.localhost
+ENV POSTGRES_DB=mydatabase
+ENV POSTGRES_USER=user
+ENV POSTGRES_PASSWORD=password
+ENV DATAUSA_API_BASE_URL=https://datausa.io/api/data
+ENV ZIRCON_API_BASE_URL=https://zircon.datausa.io/api/data
+
+# Create staticfiles directory
+RUN mkdir /code/staticfiles
+
+# Set entrypoint
+ENTRYPOINT ["/code/wait_for_postgres.sh"]
+
+# Expose the port the app runs on
+EXPOSE 8000
+
+# Run migrations and the Django development server
+CMD ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]

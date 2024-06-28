@@ -97,6 +97,6 @@ pytest
 
 - **datausa_backend/**: Contains the backend code in Django.
 - **angular-frontend/**: Contains the frontend code in Angular.
-- **wait_for_postgres.sh**: Script to wait for PostgreSQL to be available before starting Django.
+- **wait-for-postgres.sh**: Script to wait for PostgreSQL to be available before starting Django.
 - **docker-compose.yml**: Docker Compose configuration.
 - **Dockerfile**: Docker configuration for the backend.

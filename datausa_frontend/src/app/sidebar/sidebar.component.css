@@ -6,3 +6,8 @@ mat-card {
 mat-card-content {
   padding: 0;
 }
+
+mat-list-item img {
+  margin-right: 10px;
+  vertical-align: middle;
+}

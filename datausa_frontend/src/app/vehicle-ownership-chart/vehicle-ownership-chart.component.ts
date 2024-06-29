@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { Apollo, gql } from 'apollo-angular';
 
@@ -7,19 +7,16 @@ import { Apollo, gql } from 'apollo-angular';
   templateUrl: './vehicle-ownership-chart.component.html',
   styleUrls: ['./vehicle-ownership-chart.component.css'],
 })
-export class VehicleOwnershipChartComponent implements OnInit, AfterViewInit {
-  constructor(private apollo: Apollo) {}
+export class VehicleOwnershipChartComponent implements OnInit {
+  @ViewChild('vehicleOwnershipChart') vehicleOwnershipChart:
+    | ElementRef
+    | undefined;
 
-  ngOnInit(): void {
-    // Registra todos os componentes necessários do Chart.js
+  constructor(private apollo: Apollo) {
     Chart.register(...registerables);
   }
 
-  ngAfterViewInit(): void {
-    this.fetchData();
-  }
-
-  fetchData(): void {
+  ngOnInit(): void {
     this.apollo
       .query({
         query: gql`
@@ -27,35 +24,28 @@ export class VehicleOwnershipChartComponent implements OnInit, AfterViewInit {
             vehicleOwnershipData(year: 2021) {
               idVehiclesAvailable
               vehiclesAvailable
-              year
-              commuteMeansByGender
-              geography
+              households
             }
           }
         `,
       })
-      .subscribe(
-        (result: any) => {
+      .subscribe((result: any) => {
+        if (this.vehicleOwnershipChart) {
           this.createChart(result.data.vehicleOwnershipData);
-        },
-        (error) => {
-          console.error('Error fetching vehicle ownership data:', error);
         }
-      );
+      });
   }
 
   createChart(data: any): void {
-    const ctx = document.getElementById(
-      'vehicleOwnershipChart'
-    ) as HTMLCanvasElement;
+    const ctx = this.vehicleOwnershipChart!.nativeElement.getContext('2d');
     new Chart(ctx, {
-      type: 'pie', // Tipo de gráfico
+      type: 'pie',
       data: {
-        labels: data.map((d: any) => d.vehiclesAvailable), // Labels dos segmentos do gráfico
+        labels: data.map((item: any) => item.vehiclesAvailable),
         datasets: [
           {
-            label: 'Vehicle Ownership',
-            data: data.map((d: any) => d.commuteMeansByGender),
+            label: 'Vehicles Available',
+            data: data.map((item: any) => item.households),
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -78,14 +68,6 @@ export class VehicleOwnershipChartComponent implements OnInit, AfterViewInit {
       },
       options: {
         responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          tooltip: {
-            enabled: true,
-          },
-        },
       },
     });
   }

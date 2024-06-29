@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { Apollo, gql } from 'apollo-angular';
 
@@ -7,19 +7,14 @@ import { Apollo, gql } from 'apollo-angular';
   templateUrl: './population-chart.component.html',
   styleUrls: ['./population-chart.component.css'],
 })
-export class PopulationChartComponent implements OnInit, AfterViewInit {
-  constructor(private apollo: Apollo) {}
+export class PopulationChartComponent implements OnInit {
+  @ViewChild('populationChart') populationChart: ElementRef | undefined;
 
-  ngOnInit(): void {
-    // Registra todos os componentes necessários do Chart.js
+  constructor(private apollo: Apollo) {
     Chart.register(...registerables);
   }
 
-  ngAfterViewInit(): void {
-    this.fetchData();
-  }
-
-  fetchData(): void {
+  ngOnInit(): void {
     this.apollo
       .query({
         query: gql`
@@ -33,34 +28,34 @@ export class PopulationChartComponent implements OnInit, AfterViewInit {
           }
         `,
       })
-      .subscribe(
-        (result: any) => {
+      .subscribe((result: any) => {
+        if (this.populationChart) {
           this.createChart(result.data.populationData);
-        },
-        (error) => {
-          console.error('Error fetching population data:', error);
         }
-      );
+      });
   }
 
   createChart(data: any): void {
-    const ctx = document.getElementById('populationChart') as HTMLCanvasElement;
+    const ctx = this.populationChart!.nativeElement.getContext('2d');
     new Chart(ctx, {
-      type: 'bar', // Tipo de gráfico
+      type: 'line',
       data: {
-        labels: data.map((d: any) => `${d.state} (${d.year})`), // Labels dos eixos X
+        labels: data.map((item: any) => item.year),
         datasets: [
           {
             label: 'Population',
-            data: data.map((d: any) => d.population),
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            data: data.map((item: any) => item.population),
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
           },
         ],
       },
       options: {
+        responsive: true,
         scales: {
+          x: {
+            beginAtZero: true,
+          },
           y: {
             beginAtZero: true,
           },

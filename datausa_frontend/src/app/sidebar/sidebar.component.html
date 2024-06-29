@@ -1,35 +1,21 @@
-<mat-card>
-  <mat-card-content>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/dashboard">
-        <img src="/assets/home.svg" alt="Home" width="24" height="24" />
-        Dashboard
-      </a>
-
-      <a mat-list-item routerLink="/accounts">
-        <img src="/assets/users.svg" alt="Accounts" width="24" height="24" />
-        Accounts
-      </a>
-      <a mat-list-item routerLink="/activities">
-        <img src="/assets/sync.svg" alt="Activities" width="24" height="24" />
-        Activities
-      </a>
-    </mat-nav-list>
-
-    <mat-nav-list>
-      <a mat-list-item routerLink="/dashboard">
-        <img src="/assets/john.png" alt="Home" width="24" height="24" />
-        John Smith
-        <br />
-        <span>Principal</span>
-      </a>
-    </mat-nav-list>
-
-    <mat-nav-list>
-      <a mat-list-item routerLink="/dashboard">
-        <img src="/assets/sign-out.svg" alt="Home" width="24" height="24" />
-        Sign Out
-      </a>
-    </mat-nav-list>
-  </mat-card-content>
-</mat-card>
+<mat-nav-list>
+  <a mat-list-item routerLink="/dashboard" (click)="onClose()">
+    <img src="assets/home.svg" class="icon" /> Dashboard
+  </a>
+  <a mat-list-item routerLink="/accounts" (click)="onClose()">
+    <img src="assets/users.svg" class="icon" /> Accounts
+  </a>
+  <a mat-list-item routerLink="/activities" (click)="onClose()">
+    <img src="assets/sync.svg" class="icon" /> Activities
+  </a>
+  <div class="user-info">
+    <img src="assets/john.png" class="avatar" />
+    <div class="user-details">
+      <p class="user-name">John Doe</p>
+      <p class="user-role">Administrator</p>
+    </div>
+  </div>
+  <a mat-list-item routerLink="/logout" (click)="onClose()">
+    <img src="assets/sign-out.svg" class="icon" /> Sign out
+  </a>
+</mat-nav-list>

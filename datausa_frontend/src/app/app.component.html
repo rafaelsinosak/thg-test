@@ -1,5 +1,17 @@
-<app-header></app-header>
-<div class="main-container">
-  <app-sidebar></app-sidebar>
-  <router-outlet></router-outlet>
-</div>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    mode="over"
+    [(opened)]="isSidenavOpen"
+    (backdropClick)="closeSidenav()"
+  >
+    <app-sidebar (closeSidenav)="closeSidenav()"></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header
+      [isSidenavOpen]="isSidenavOpen"
+      (toggleSidenav)="toggleSidenav()"
+    ></app-header>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

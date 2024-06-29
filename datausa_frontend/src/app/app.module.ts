@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -43,6 +45,8 @@ import { ActivitiesComponent } from './activities/activities.component';
     MatListModule,
     MatGridListModule,
     MatCardModule,
+    MatTooltipModule,
+    MatButtonModule,
     FlexLayoutModule,
     FormsModule,
   ],

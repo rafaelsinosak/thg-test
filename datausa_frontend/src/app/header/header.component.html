@@ -1,5 +1,17 @@
 <mat-toolbar color="primary">
-  <img src="assets/logo.svg" alt="The Hackett Group" height="40" />
+  <button
+    mat-icon-button
+    [matTooltip]="isSidenavOpen ? 'Close menu' : 'Open menu'"
+    (click)="toggleSidenav.emit()"
+  >
+    <mat-icon *ngIf="!isSidenavOpen">menu</mat-icon>
+    <mat-icon *ngIf="isSidenavOpen">close</mat-icon>
+  </button>
+  <a routerLink="/dashboard">
+    <img src="assets/logo.svg" alt="Logo" class="logo" />
+  </a>
   <span class="spacer"></span>
-  <img src="assets/bell.svg" alt="Notifications" width="24" height="24" />
+  <button mat-icon-button matTooltip="Notifications">
+    <img src="assets/bell.svg" class="icon" />
+  </button>
 </mat-toolbar>

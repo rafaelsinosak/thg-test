@@ -1,3 +1,13 @@
 .spacer {
-  flex: 1 1 auto;
+  flex: 1;
+}
+
+.logo {
+  height: 27px;
+  margin-left: 15px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
 }

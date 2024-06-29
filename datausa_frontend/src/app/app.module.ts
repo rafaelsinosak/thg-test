@@ -7,6 +7,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -37,6 +41,10 @@ import { ActivitiesComponent } from './activities/activities.component';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    FlexLayoutModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

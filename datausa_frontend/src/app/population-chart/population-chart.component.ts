@@ -64,7 +64,7 @@ export class PopulationChartComponent implements OnInit {
 
           const allPopulations = data.map((item: any) => item.population);
           // const minPopulation = Math.min(...allPopulations);
-          const maxPopulation = Math.max(...allPopulations);
+          //const maxPopulation = Math.max(...allPopulations);
 
           const ctx = this.populationChart.nativeElement.getContext('2d');
           new Chart(ctx, {
@@ -88,8 +88,8 @@ export class PopulationChartComponent implements OnInit {
                     display: true,
                   },
                   position: 'left',
-                  min: 0,
-                  max: maxPopulation + 1000000,
+                  min: 0, // Adjust the min and max values as needed with minPopulation and maxPopulation
+                  max: 50000000,
                 },
                 y1: {
                   title: {
@@ -99,8 +99,8 @@ export class PopulationChartComponent implements OnInit {
                   grid: {
                     drawOnChartArea: false, // Only want the grid lines for one axis to show up
                   },
-                  min: 0,
-                  max: maxPopulation + 1000000,
+                  min: 0, // Adjust the min and max values as needed with minPopulation and maxPopulation
+                  max: 50000000,
                 },
               },
               plugins: {

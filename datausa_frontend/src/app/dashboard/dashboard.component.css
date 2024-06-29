@@ -2,8 +2,40 @@ mat-card {
   margin: 16px;
 }
 
-mat-card-content {
+mat-grid-list {
+  width: 100%;
+}
+
+mat-grid-tile {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+mat-grid-tile div {
+  width: 100%;
+  text-align: center;
+}
+
+h3 {
+  margin-bottom: 16px;
+}
+
+app-vehicle-ownership-chart,
+app-population-chart {
+  width: 100%;
+  height: 100%;
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    grid-auto-rows: minmax(100px, auto);
+  }
+
+  .dashboard-grid mat-grid-tile {
+    colspan: 3 !important;
+  }
 }

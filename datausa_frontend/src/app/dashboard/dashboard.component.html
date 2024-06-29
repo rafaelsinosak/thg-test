@@ -1,4 +1,15 @@
-<div>
-  <app-vehicle-ownership-chart></app-vehicle-ownership-chart>
-  <app-population-chart></app-population-chart>
-</div>
+<mat-card>
+  <mat-grid-list
+    cols="2"
+    rowHeight="450px"
+    gutterSize="16px"
+    class="dashboard-grid"
+  >
+    <mat-grid-tile colspan="1" rowspan="1">
+      <app-vehicle-ownership-chart></app-vehicle-ownership-chart>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <app-population-chart></app-population-chart>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>

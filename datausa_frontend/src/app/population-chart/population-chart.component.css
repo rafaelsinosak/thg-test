@@ -1,0 +1,10 @@
+.chart-container {
+  position: relative;
+  height: 400px; /* Define a altura que você deseja para o gráfico */
+  width: 100%; /* Faz o gráfico ocupar a largura completa do elemento pai */
+}
+
+canvas {
+  width: 100% !important; /* Garante que o canvas ocupe a largura completa do container */
+  height: 100% !important; /* Garante que o canvas ocupe a altura completa do container */
+}

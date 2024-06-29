@@ -24,3 +24,6 @@ h6 {
 .sidenav-container {
   height: 100%;
 }
+.mat-drawer {
+  width: 240px !important;
+}

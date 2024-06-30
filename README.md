@@ -125,6 +125,8 @@ npm install
 npm i -g @angular/cli
 ```
 
+##### Then
+
 ```bash
 ng serve
 ```
@@ -146,6 +148,8 @@ npm install
 ```bash
 npm i -g @angular/cli
 ```
+
+##### Then
 
 ```bash
 ng serve

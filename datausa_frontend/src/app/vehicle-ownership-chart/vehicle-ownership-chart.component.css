@@ -1,7 +1,13 @@
 .chart-container {
   position: relative;
+  margin-top: 30px;
   height: 350px;
   width: 100%;
+}
+
+.chart-title {
+  font-weight: bold;
+  font-size: large;
 }
 
 canvas {

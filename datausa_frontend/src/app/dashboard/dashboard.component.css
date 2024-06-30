@@ -39,3 +39,20 @@ app-population-chart {
     colspan: 3 !important;
   }
 }
+
+.dashboard-grid {
+  width: 100%;
+}
+
+mat-grid-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+app-vehicle-ownership-chart,
+app-population-chart {
+  width: 100%;
+  height: 100%;
+}

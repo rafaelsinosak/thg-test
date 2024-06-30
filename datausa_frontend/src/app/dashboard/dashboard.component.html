@@ -1,15 +1,10 @@
 <mat-card>
-  <mat-grid-list
-    cols="2"
-    rowHeight="570px"
-    gutterSize="16px"
-    class="dashboard-grid"
-  >
-    <mat-grid-tile colspan="1" rowspan="1">
+  <div class="grid-container">
+    <div class="grid-item">
       <app-vehicle-ownership-chart></app-vehicle-ownership-chart>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1">
+    </div>
+    <div class="grid-item">
       <app-population-chart></app-population-chart>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+  </div>
 </mat-card>

@@ -1,6 +1,4 @@
-# THG Exercise Fullstack
-
-This project is a full stack application using Angular on the frontend and Django on the backend, which connects to the API provided by datausa.io and visualizes two charts using a GraphQL API with two resolvers. The application also serves the Angular distribution files at a specific endpoint.
+# Django Backend
 
 ## Requirements
 
@@ -9,14 +7,7 @@ This project is a full stack application using Angular on the frontend and Djang
 
 ## Setup
 
-1. Clone this repository:
-
-```bash
-git clone https://github.com/rafaelsinosak/thg-test.git
-cd thg-test
-```
-
-2. Create a `.env` file at the root of the project with the following content:
+1. Create a `.env` file at the root of the project with the following content:
 
 ```env
 SECRET_KEY=your_secret_key
@@ -29,7 +20,7 @@ DATAUSA_API_BASE_URL=https://datausa.io/api/data
 ZIRCON_API_BASE_URL=https://zircon.datausa.io/api/data
 ```
 
-3. Build and start the Docker containers:
+2. Build and start the Docker containers:
 
 ```bash
 docker-compose up --build
@@ -93,10 +84,8 @@ docker-compose exec web /bin/bash
 pytest
 ```
 
-## Project Structure
+## Stop the containers:
 
-- **datausa_backend/**: Contains the backend code in Django.
-- **angular-frontend/**: Contains the frontend code in Angular.
-- **wait-for-postgres.sh**: Script to wait for PostgreSQL to be available before starting Django.
-- **docker-compose.yml**: Docker Compose configuration.
-- **Dockerfile**: Docker configuration for the backend.
+```bash
+docker-compose down
+```

@@ -35,9 +35,6 @@ cd datausa_backend
 SECRET_KEY=your_secret_key
 DEBUG=True
 ALLOWED_HOSTS=127.0.0.1,.localhost
-POSTGRES_DB=mydatabase
-POSTGRES_USER=user
-POSTGRES_PASSWORD=password
 DATAUSA_API_BASE_URL=https://datausa.io/api/data
 ZIRCON_API_BASE_URL=https://zircon.datausa.io/api/data
 ```
@@ -110,7 +107,7 @@ docker-compose exec web /bin/bash
 pytest
 ```
 
-4. Run the frontend:
+4. Run the delivarable frontend:
 
 #### Return to the root folder
 
@@ -123,6 +120,29 @@ npm install
 ```
 
 ##### Use the step bellow if you don't have angular-cli installed
+
+```bash
+npm i -g @angular/cli
+```
+
+```bash
+ng serve
+```
+
+5. Run the Routing+Material frontend:
+
+#### Return to the root folder
+
+```bash
+cd datausa_frontend_material
+```
+
+```bash
+npm install
+```
+
+##### Use the step bellow if you don't have angular-cli installed
+
 ```bash
 npm i -g @angular/cli
 ```
@@ -136,22 +156,24 @@ ng serve
 - **datausa_backend/**: Contains the backend code in Django.
 - **datausa_frontend_singlepage/**: Contains the basic HTML CSS JS frontend code in Angular.
 - **datausa_frontend_material/**: Contains the Routing & Material frontend code in Angular.
-- **datausa_backend/wait-for-postgres.sh**: Script to wait for PostgreSQL to be available before starting Django.
+- <s>**datausa_backend/wait-for-postgres.sh**: Script to wait for PostgreSQL to be available before starting Django.</s> This file was removed in the project.
 - **datausa_backend/docker-compose.yml**: Docker Compose configuration.
 - **datausa_backend/Dockerfile**: Docker configuration for the backend.
 
 ## Beyond guidelines
 
 - **Docker**: The docker launches the Django container after the postgres container is ready.
-- **POSTGRES**: The backend saves the data from the API in a PostgreSQL database.
+- <s>**POSTGRES**: The backend saves the data from the API in a PostgreSQL database.</s> The database was removed in the project.
 - **.env file**: The backend consumes the .env file.
 - **Tests**: There are two tests in the backend. Both tests the GraphQL API and results.
 - **Material Frontend**: Since the position uses material, I created the frontend using Angular Material.
+- **Charts**: The charts are rendered dynamically with the data provided by the API. If more states or more years are added, the charts will be updated. I also created a minPopulation and maxPopulation variables to render the Y axis in the population chart differently for each population range. It allows to implement the selector in TODO subsection below.
 
 ## TODO
 
 There are some things that I thought I should do in the future:
 
+- Return PostgreSQL database
 - A selector that allow the user to select the date range from both charts.
 - A selector that allow the user to select the states from the population chart.
 - Some cards to show the highlights results.
@@ -161,3 +183,33 @@ There are some things that I thought I should do in the future:
 ```bash
 docker-compose down
 ```
+
+# Screenshots
+
+#### GraphQL Population
+
+![GraphQL Population](https://raw.githubusercontent.com/rafaelsinosak/thg-test/main/screenshots/GraphQL%20Population.png)
+
+#### GraphQL Vehicles
+
+![GraphQL Vehicles](https://raw.githubusercontent.com/rafaelsinosak/thg-test/main/screenshots/GraphQL%20Vehicle.png)
+
+#### Singlepage Frontend FullScreen
+
+![Singlepage Frontend FullScreen](https://raw.githubusercontent.com/rafaelsinosak/thg-test/main/screenshots/datausa_frontend_singlepage%20Full%20Screen.png)
+
+#### SinglePage Frontend Mobile Devices with Console
+
+![SinglePage Frontend Mobile Devices with Console](https://raw.githubusercontent.com/rafaelsinosak/thg-test/main/screenshots/datausa_frontend_singlepage%20Mobile.png)
+
+#### Material Router Frontend FullScreen
+
+![Material Router Frontend FullScreen](https://raw.githubusercontent.com/rafaelsinosak/thg-test/main/screenshots/datausa_frontend_material%20Full%20Screen.png)
+
+#### Material Router Frontend FullScreen Sidebar
+
+![Material Router Frontend FullScreen Sidebar](https://raw.githubusercontent.com/rafaelsinosak/thg-test/main/screenshots/datausa_frontend_material%20Full%20Screen%20Sidebar.png)
+
+#### Material Router Frontend Mobile Devices with Console
+
+![Material Router Frontend Mobile Devices with Console](https://raw.githubusercontent.com/rafaelsinosak/thg-test/main/screenshots/datausa_frontend_material%20Mobile.png)

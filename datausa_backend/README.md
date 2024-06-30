@@ -13,9 +13,6 @@
 SECRET_KEY=your_secret_key
 DEBUG=True
 ALLOWED_HOSTS=127.0.0.1,.localhost
-POSTGRES_DB=mydatabase
-POSTGRES_USER=user
-POSTGRES_PASSWORD=password
 DATAUSA_API_BASE_URL=https://datausa.io/api/data
 ZIRCON_API_BASE_URL=https://zircon.datausa.io/api/data
 ```

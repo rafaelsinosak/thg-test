@@ -122,6 +122,11 @@ cd datausa_frontend_singlepage
 npm install
 ```
 
+##### Use the step bellow if you don't have angular-cli installed
+```bash
+npm i -g @angular/cli
+```
+
 ```bash
 ng serve
 ```

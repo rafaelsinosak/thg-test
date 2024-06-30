@@ -20,9 +20,6 @@ RUN apt-get update && apt-get install -y postgresql-client
 # Copy the rest of the code into the container
 COPY . /code/
 
-# Copy the wait script into the container
-COPY wait-for-postgres.sh /code/wait-for-postgres.sh
-
 # Ensure the wait script has execute permissions
 RUN chmod +x /code/wait-for-postgres.sh
 

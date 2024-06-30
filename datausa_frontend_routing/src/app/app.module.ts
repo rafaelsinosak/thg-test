@@ -15,14 +15,14 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { PopulationChartComponent } from './population-chart/population-chart.component';
-import { VehicleOwnershipChartComponent } from './vehicle-ownership-chart/vehicle-ownership-chart.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { PopulationChartComponent } from './components/population-chart/population-chart.component';
+import { VehicleOwnershipChartComponent } from './components/vehicle-ownership-chart/vehicle-ownership-chart.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AccountsComponent } from './accounts/accounts.component';
-import { ActivitiesComponent } from './activities/activities.component';
+import { AccountsComponent } from './pages/accounts/accounts.component';
+import { ActivitiesComponent } from './pages/activities/activities.component';
 
 @NgModule({
   declarations: [

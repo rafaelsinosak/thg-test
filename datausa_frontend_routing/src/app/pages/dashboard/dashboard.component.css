@@ -16,6 +16,7 @@
 
 mat-card {
   margin: 16px;
+  min-height: 600px;
 }
 
 mat-grid-list {

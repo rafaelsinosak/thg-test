@@ -41,9 +41,6 @@ class Query(graphene.ObjectType):
             if item.get('State') in states and start_year <= int(item.get('Year')) <= end_year
         ]
 
-        # Saving Data into the database
-        PopulationData.objects.bulk_create(filtered_data, ignore_conflicts=True)
-
         return filtered_data
 
     def resolve_vehicle_ownership_data(self, info, year=None):
@@ -70,9 +67,6 @@ class Query(graphene.ObjectType):
             for item in data
             if int(item.get('Year')) == year
         ]
-
-        # Saving Data into the database
-        VehicleOwnershipData.objects.bulk_create(filtered_data, ignore_conflicts=True)
 
         return filtered_data
 

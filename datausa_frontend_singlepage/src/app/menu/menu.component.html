@@ -1,0 +1,44 @@
+<div class="nav-container">
+  <div class="nav-items">
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="nav-active"
+      class="nav-link nav-selected"
+    >
+      <img class="nav-icon" src="assets/home.svg" /><b>Dashboard</b>
+      <div class="nav-link-title"></div>
+    </a>
+
+    <a routerLink="/dashboard" routerLinkActive="nav-active" class="nav-link">
+      <img class="nav-icon" src="assets/users.svg" />Accounts
+      <div class="nav-link-title"></div>
+    </a>
+
+    <a routerLink="/dashboard" routerLinkActive="nav-active" class="nav-link">
+      <img class="nav-icon" src="assets/sync.svg" />Activities
+      <div class="nav-link-title"></div>
+    </a>
+  </div>
+
+  <div class="nav-footer">
+    <div class="user-profile-container">
+      <div class="user-profile">
+        <div class="user-avatar">
+          <img src="assets/john.png" />
+        </div>
+        <div class="user-info">
+          <div class="user-full-name">
+            <span class="user-first-name">John</span>
+            <span class="user-last-name">Smith</span>
+          </div>
+          <div class="user-headline">Principal</div>
+        </div>
+      </div>
+    </div>
+
+    <a routerLink="/sign-out" routerLinkActive="nav-active" class="nav-link">
+      <img class="nav-icon" src="assets/sign-out.svg" />Sign Out
+      <div class="nav-link-title"></div>
+    </a>
+  </div>
+</div>
